@@ -1,16 +1,14 @@
-function hasTargetSum(nums, target) {
-  // Write your algorithm here
-  const previousValues = {}
-  for(let i = 0; i < nums.length; i++) {
-    const currentNumber = nums[i]
-    const needednum = target - currentNumber
-    const index2 = previousValues[needednum]
-    if (index2 != null) {
-      return [index2, 1]
-    }else {
-      previousValues[currentNumber] = i
-    }
+function hasTargetSum(array, target) {
+  const seenNumbers = {};
+
+  for (const number of array) {
+    // n steps
+    const complement = target - number;
+    if (complement in seenNumbers) return true;
+    seenNumbers[number] = true;
   }
+
+  return false;
 
 }
 
@@ -20,22 +18,15 @@ function hasTargetSum(nums, target) {
 
 /* 
   Add your pseudocode here
-In your array , iterate over each item
-for each num1 index1 in nums
-  for each num2 index2 in nums
-  return [index1, index2]
 
 */
 
 /*
   Add written explanation of your solution here
-  //here we are give an array of numbers and a target
-  //if there is a pair of numbers that add up tothe target
-  //assuming there exixts only a pair for any target pased
-  //then return those two numbers
+  
 */
 
-// You can run `node index.js` to view these console logs
+//You can run `node index.js` to view these console logs
 if (require.main === module) {
   // add your own custom tests in here
   console.log("Expecting: true");
